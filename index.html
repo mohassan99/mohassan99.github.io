@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!--The CSV file at https://flunky.github.io/cars2017.csv
+<!-- https://flunky.github.io/cars2017.csv
     contains average data for 2017 automobile manufacturers.
-    Create a scatter plot of this data over a 200x200 as follows.
-    - Plot the Average City MPG horizontally on a logarithmic scale.
-    - Plot the Average Highway MPG vertically on a logarithmic scale.
-    - Set the radius of each circle to 2 plus the number of cylinders for that entry.
-    - Set the logarithmic scales to base 10, over a domain from 10 to 150.
-    - Use the .tickValues() method of each axis to set four tick values at 10, 20, 50 and 100.
-    - Use the .tickFormat() method of each axis to set the ticks to d3.format("~s").
+    This creates a scatter plot of this data over 200x200 pixesls.
+    - Average City and Highway MPG are plotted horizontally and vertically on a logarithmic base 10 scale
+      over a domain from 10 to 150.
+    - The radius of each circle to 2 plus the number of cylinders for that entry.
+    -  .tickValues() is use on each axis to set tick values at 10, 20, 50 and 100.
+       and .tickFormat() of each axis is used to to set the ticks to d3.format("~s").
  -->
-<!-- <img src="(file:///G:\Other computers\My Laptop\Documents\MCS-DS\2023-05 Data Visualization\Week 8\Picture1.png)">
--->
+
 <script src='https://d3js.org/d3.v5.min.js'></script>
 <style> circle {fill: lightblue; stroke: black;} </style>
 <body onload='init()'>
@@ -21,6 +19,9 @@
     async function init() {
         /* Code Here */
         const data = await d3.csv('https://flunky.github.io/cars2017.csv');
+        const data4 = await d3.csv('https://mohassan99.github.io/cars2017_4.csv');
+        const data8 = await d3.csv('https://mohassan99.github.io/cars2017_8.csv');
+        const data12 = await d3.csv('https://mohassan99.github.io/cars2017_12.csv');
         //console.log(data) //to view data variable on console
         /*
         Columns:
@@ -55,12 +56,6 @@
         d3.select("svg")
             .append("g")
             .attr("transform","translate("+margin+","+margin+")")
-            // 	;
-            // //s.d.e.a your objects
-            //     //axes
-            //     d3.select("svg")
-            //         .append("g")
-            //         .attr("transform","translate("+margin+","+margin+")")
             .call(d3.axisLeft(y)
                 .tickValues([10, 20, 50, 100])
                 .tickFormat(d3.format("~s"))
@@ -76,7 +71,50 @@
         ;
         //end axes
 
-        /* End Code Here */
+        /* //when click button4
+         d3.select("circle").html="" // clear  contents of SVg
+            //repopulate
+            //.append("g")
+            //.attr("transform","translate("+margin+","+(+margin)+")")
+            .selectAll("circle")
+            .data(data4)
+            .enter()
+            .append("circle")
+            .attr("cx", function(d) {return x(+d.AverageCityMPG); } )
+            .attr("cy", function(d) {return y(+d.AverageHighwayMPG); } )
+            .attr("r",  function(d) {return 2+ +d.EngineCylinders; } )
+        ;
+        */
+        /* //when click button8
+        d3.select("circle").html="" // clear  contents of SVg
+           //repopulate
+           //.append("g")
+           //.attr("transform","translate("+margin+","+(+margin)+")")
+           .selectAll("circle")
+           .data(data8)
+           .enter()
+           .append("circle")
+           .attr("cx", function(d) {return x(+d.AverageCityMPG); } )
+           .attr("cy", function(d) {return y(+d.AverageHighwayMPG); } )
+           .attr("r",  function(d) {return 2+ +d.EngineCylinders; } )
+       ;
+       */
+        /* //when click button12
+ d3.select("circle").html="" // clear  contents of SVg
+
+    //repopulate
+            //.append("g")
+            //.attr("transform","translate("+margin+","+(+margin)+")")
+            .selectAll("circle")
+            .data(data12)
+            .enter()
+            .append("circle")
+            .attr("cx", function(d) {return x(+d.AverageCityMPG); } )
+            .attr("cy", function(d) {return y(+d.AverageHighwayMPG); } )
+            .attr("r",  function(d) {return 2+ +d.EngineCylinders; } )
+        ;
+*/
+
     } //end async
 </script>
 </body>
