@@ -13,14 +13,17 @@
 
 <script src='https://d3js.org/d3.v5.min.js'></script>
 <style> circle {fill: lightblue; stroke: black;} </style>
-<style> button {top: 0; left: 0; position: relative} </style>
+<!--<style> button {} </style>
+-->
 
 <body onload='init()'>
 <svg width=300 height=300> </svg>
-<button onclick="repop4()"> Four Cylinders </button>
-<button onclick="repop8()"> Eight Cylinders </button>
-<button onclick="repop12()"> Twelve Cylinders </button>
 
+<button type = "button" onclick="repop4()"> Four Cylinders </button>
+<!--
+<button type = "button" onclick="repop8()"> Eight Cylinders </button>
+<button type = "button" onclick="repop12()"> Twelve Cylinders </button>
+-->
 <!--
 button's onclick event assoc with repop4,8,12() functions,
 callback fxns repop4,8,12 registered button's event
@@ -31,6 +34,8 @@ note css properties: opacity, shadow, .button:hover, shadow, float:right, ...
         db.sql("Select …")
     }
 -->
+<!-- Create a div where the circle will take place -->
+<div id="circles"></div>
 
 <script>
     async function init() {
@@ -57,6 +62,7 @@ note css properties: opacity, shadow, .button:hover, shadow, float:right, ...
         var height = 200;
 
         //circles
+
         d3.select("svg")
             .append("g")
             .attr("transform","translate("+margin+","+(+margin)+")")
@@ -69,6 +75,22 @@ note css properties: opacity, shadow, .button:hover, shadow, float:right, ...
             .attr("r",  function(d) {return 2+ +d.EngineCylinders; } )
         ;
 
+        var myScatter = d3.select("#scatter")
+            .append("svg")
+            .append("g")
+            .attr("transform","translate("+margin+","+(+margin)+")")
+            .selectAll("circle")
+            .data(data)
+            .enter()
+            .append("circle")
+            .attr("cx", function(d) {return x(+d.AverageCityMPG); } )
+            .attr("cy", function(d) {return y(+d.AverageHighwayMPG); } )
+            .attr("r",  function(d) {return 2+ +d.EngineCylinders; } )
+
+        var repop4 = function(){
+            myScatter
+                .data(data4)
+        }
 // use a transform("translate", ..) to move origin to the chart origin within the margins
         d3.select("svg")
             .append("g")
@@ -88,11 +110,12 @@ note css properties: opacity, shadow, .button:hover, shadow, float:right, ...
         ;
         //end axes
         //buttons
-        function repop4() {
-            d3.select("circle").html="" // clear  contents of SVg
+        /*
+        var repop4 = function{
+            d3.selectAll("circle").html="" // clear  circle elements
                 //repopulate
-                //.append("g")
-                //.attr("transform","translate("+margin+","+(+margin)+")")
+                .append("g")
+                .attr("transform","translate("+margin+","+(+margin)+")")
                 .selectAll("circle")
                 .data(data4)
                 .enter()
@@ -102,6 +125,8 @@ note css properties: opacity, shadow, .button:hover, shadow, float:right, ...
                 .attr("r",  function(d) {return 2+ +d.EngineCylinders; } )
             ;
         }
+         */
+        /*
         function repop8() {
             d3.select("circle").html="" // clear  contents of SVg
                 //repopulate
@@ -116,6 +141,8 @@ note css properties: opacity, shadow, .button:hover, shadow, float:right, ...
                 .attr("r",  function(d) {return 2+ +d.EngineCylinders; } )
             ;
         }
+        */
+        /*
         function repop12() {
             d3.select("circle").html="" // clear  contents of SVg
                 //repopulate
@@ -130,6 +157,7 @@ note css properties: opacity, shadow, .button:hover, shadow, float:right, ...
                 .attr("r",  function(d) {return 2+ +d.EngineCylinders; } )
             ;
         }
+         */
     } //end async
 </script>
 </body>
