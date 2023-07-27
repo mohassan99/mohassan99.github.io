@@ -13,8 +13,25 @@
 
 <script src='https://d3js.org/d3.v5.min.js'></script>
 <style> circle {fill: lightblue; stroke: black;} </style>
+<style> button {top: 0; left: 0; position: relative} </style>
+
 <body onload='init()'>
 <svg width=300 height=300> </svg>
+<button onclick="repop4()"> Four Cylinders </button>
+<button onclick="repop8()"> Eight Cylinders </button>
+<button onclick="repop12()"> Twelve Cylinders </button>
+
+<!--
+button's onclick event assoc with repop4,8,12() functions,
+callback fxns repop4,8,12 registered button's event
+the repop functions defined in js below
+see https://www.w3schools.com/css/css3_buttons.asp to style button
+note css properties: opacity, shadow, .button:hover, shadow, float:right, ...
+    function repop4() {
+        db.sql("Select …")
+    }
+-->
+
 <script>
     async function init() {
         /* Code Here */
@@ -70,51 +87,49 @@
             )
         ;
         //end axes
-
-        /* //when click button4
-         d3.select("circle").html="" // clear  contents of SVg
-            //repopulate
-            //.append("g")
-            //.attr("transform","translate("+margin+","+(+margin)+")")
-            .selectAll("circle")
-            .data(data4)
-            .enter()
-            .append("circle")
-            .attr("cx", function(d) {return x(+d.AverageCityMPG); } )
-            .attr("cy", function(d) {return y(+d.AverageHighwayMPG); } )
-            .attr("r",  function(d) {return 2+ +d.EngineCylinders; } )
-        ;
-        */
-        /* //when click button8
-        d3.select("circle").html="" // clear  contents of SVg
-           //repopulate
-           //.append("g")
-           //.attr("transform","translate("+margin+","+(+margin)+")")
-           .selectAll("circle")
-           .data(data8)
-           .enter()
-           .append("circle")
-           .attr("cx", function(d) {return x(+d.AverageCityMPG); } )
-           .attr("cy", function(d) {return y(+d.AverageHighwayMPG); } )
-           .attr("r",  function(d) {return 2+ +d.EngineCylinders; } )
-       ;
-       */
-        /* //when click button12
- d3.select("circle").html="" // clear  contents of SVg
-
-    //repopulate
-            //.append("g")
-            //.attr("transform","translate("+margin+","+(+margin)+")")
-            .selectAll("circle")
-            .data(data12)
-            .enter()
-            .append("circle")
-            .attr("cx", function(d) {return x(+d.AverageCityMPG); } )
-            .attr("cy", function(d) {return y(+d.AverageHighwayMPG); } )
-            .attr("r",  function(d) {return 2+ +d.EngineCylinders; } )
-        ;
-*/
-
+        //buttons
+        function repop4() {
+            d3.select("circle").html="" // clear  contents of SVg
+                //repopulate
+                //.append("g")
+                //.attr("transform","translate("+margin+","+(+margin)+")")
+                .selectAll("circle")
+                .data(data4)
+                .enter()
+                .append("circle")
+                .attr("cx", function(d) {return x(+d.AverageCityMPG); } )
+                .attr("cy", function(d) {return y(+d.AverageHighwayMPG); } )
+                .attr("r",  function(d) {return 2+ +d.EngineCylinders; } )
+            ;
+        }
+        function repop8() {
+            d3.select("circle").html="" // clear  contents of SVg
+                //repopulate
+                //.append("g")
+                //.attr("transform","translate("+margin+","+(+margin)+")")
+                .selectAll("circle")
+                .data(data8)
+                .enter()
+                .append("circle")
+                .attr("cx", function(d) {return x(+d.AverageCityMPG); } )
+                .attr("cy", function(d) {return y(+d.AverageHighwayMPG); } )
+                .attr("r",  function(d) {return 2+ +d.EngineCylinders; } )
+            ;
+        }
+        function repop12() {
+            d3.select("circle").html="" // clear  contents of SVg
+                //repopulate
+                //.append("g")
+                //.attr("transform","translate("+margin+","+(+margin)+")")
+                .selectAll("circle")
+                .data(data12)
+                .enter()
+                .append("circle")
+                .attr("cx", function(d) {return x(+d.AverageCityMPG); } )
+                .attr("cy", function(d) {return y(+d.AverageHighwayMPG); } )
+                .attr("r",  function(d) {return 2+ +d.EngineCylinders; } )
+            ;
+        }
     } //end async
 </script>
 </body>
