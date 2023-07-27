@@ -19,11 +19,10 @@
 <body onload='init()'>
 <svg width=300 height=300> </svg>
 
-<button type = "button" onclick="repop4()"> Four Cylinders </button>
-<!--
+<button type="button" onclick="repop4()"> Four Cylinders </button>
 <button type = "button" onclick="repop8()"> Eight Cylinders </button>
 <button type = "button" onclick="repop12()"> Twelve Cylinders </button>
--->
+
 <!--
 button's onclick event assoc with repop4,8,12() functions,
 callback fxns repop4,8,12 registered button's event
@@ -40,10 +39,10 @@ note css properties: opacity, shadow, .button:hover, shadow, float:right, ...
 <script>
     async function init() {
         /* Code Here */
-        const data = await d3.csv('https://flunky.github.io/cars2017.csv');
-        const data4 = await d3.csv('https://mohassan99.github.io/cars2017_4.csv');
-        const data8 = await d3.csv('https://mohassan99.github.io/cars2017_8.csv');
-        const data12 = await d3.csv('https://mohassan99.github.io/cars2017_12.csv');
+        const data =  await d3.csv('https://flunky.github.io/cars2017.csv');
+        const data4 = await d3.csv('cars2017_4.csv');
+        const data8 = await d3.csv('cars2017_8.csv');
+        const data12 =await d3.csv('cars2017_12.csv');
         //console.log(data) //to view data variable on console
         /*
         Columns:
@@ -62,35 +61,83 @@ note css properties: opacity, shadow, .button:hover, shadow, float:right, ...
         var height = 200;
 
         //circles
+        //update(data) instead?
+        // d3.select("svg")
+        //     .append("g")
+        //     .attr("transform","translate("+margin+","+(+margin)+")")
+        //     .selectAll("circle")
+        //     .data(data)
+        //     .enter()
+        //     .append("circle")
+        //     .attr("cx", function(d) {return x(+d.AverageCityMPG); } )
+        //     .attr("cy", function(d) {return y(+d.AverageHighwayMPG); } )
+        //     .attr("r",  function(d) {return 2+ +d.EngineCylinders; } )
+        // ;
 
-        d3.select("svg")
-            .append("g")
-            .attr("transform","translate("+margin+","+(+margin)+")")
-            .selectAll("circle")
-            .data(data)
-            .enter()
-            .append("circle")
-            .attr("cx", function(d) {return x(+d.AverageCityMPG); } )
-            .attr("cy", function(d) {return y(+d.AverageHighwayMPG); } )
-            .attr("r",  function(d) {return 2+ +d.EngineCylinders; } )
-        ;
+        // var myScatter = d3.select("#circles")
+        //     .append("svg")
+        //     .append("g")
+        //     .attr("transform","translate("+margin+","+(+margin)+")")
+        //     .selectAll("circle")
+        //     .data(data)
+        //     .enter()
+        //     .append("circle")
+        //     .attr("cx", function(d) {return x(+d.AverageCityMPG); } )
+        //     .attr("cy", function(d) {return y(+d.AverageHighwayMPG); } )
+        //     .attr("r",  function(d) {return 2+ +d.EngineCylinders; } )
+        //
+        // var repop4 = function(){
+        //     myScatter
+        //         .data(data4)
+        // }
 
-        var myScatter = d3.select("#scatter")
-            .append("svg")
-            .append("g")
-            .attr("transform","translate("+margin+","+(+margin)+")")
-            .selectAll("circle")
-            .data(data)
-            .enter()
-            .append("circle")
-            .attr("cx", function(d) {return x(+d.AverageCityMPG); } )
-            .attr("cy", function(d) {return y(+d.AverageHighwayMPG); } )
-            .attr("r",  function(d) {return 2+ +d.EngineCylinders; } )
-
-        var repop4 = function(){
-            myScatter
-                .data(data4)
+// Create a function that takes a dataset as input and updates the plot:
+        function update(_data) {
+            var u = d3.select("svg") //Do I need "var u ="?
+                .append("g")
+                .attr("transform","translate("+margin+","+(+margin)+")")
+                .selectAll("circle")
+                .data(_data); //";"?
+            //update circles
+                .enter()
+                .append("circle")
+                .merge(u)
+                .transition()
+                .duration(3000)
+                .attr("cx", function(d) {return x(+d.AverageCityMPG); } )
+                .attr("cy", function(d) {return y(+d.AverageHighwayMPG); } )
+                .attr("r",  function(d) {return 2+ +d.EngineCylinders; } )
+            //no ";"
         }
+
+        update(data);
+
+        function repop4() {
+            update(data4);
+        }
+        function repop8() {
+            update(data4);
+        }
+        function repop12() {
+            update(data4);
+        }
+    /*
+var repop4 = function{
+d3.selectAll("circle").html="" // clear  circle elements
+    //repopulate
+    .append("g")
+    .attr("transform","translate("+margin+","+(+margin)+")")
+    .selectAll("circle")
+    .data(data4)
+    .enter()
+    .append("circle")
+    .attr("cx", function(d) {return x(+d.AverageCityMPG); } )
+    .attr("cy", function(d) {return y(+d.AverageHighwayMPG); } )
+    .attr("r",  function(d) {return 2+ +d.EngineCylinders; } )
+;
+}
+*/
+
 // use a transform("translate", ..) to move origin to the chart origin within the margins
         d3.select("svg")
             .append("g")
@@ -110,22 +157,6 @@ note css properties: opacity, shadow, .button:hover, shadow, float:right, ...
         ;
         //end axes
         //buttons
-        /*
-        var repop4 = function{
-            d3.selectAll("circle").html="" // clear  circle elements
-                //repopulate
-                .append("g")
-                .attr("transform","translate("+margin+","+(+margin)+")")
-                .selectAll("circle")
-                .data(data4)
-                .enter()
-                .append("circle")
-                .attr("cx", function(d) {return x(+d.AverageCityMPG); } )
-                .attr("cy", function(d) {return y(+d.AverageHighwayMPG); } )
-                .attr("r",  function(d) {return 2+ +d.EngineCylinders; } )
-            ;
-        }
-         */
         /*
         function repop8() {
             d3.select("circle").html="" // clear  contents of SVg
