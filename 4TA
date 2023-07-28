@@ -19,7 +19,6 @@
 <body onload='init()'>
 <svg width=300 height=300> </svg>
 
-<!--<button type="button" onclick="repop4()"> Four Cylinders </button>-->
 <button type="button" onclick="repop4()"> Four Cylinders </button>
 <button type = "button" onclick="repop8()"> Eight Cylinders </button>
 <button type = "button" onclick="repop12()"> Twelve Cylinders </button>
@@ -98,10 +97,8 @@ note css properties: opacity, shadow, .button:hover, shadow, float:right, ...
                 .append("g")
                 .attr("transform","translate("+margin+","+(+margin)+")")
                 .selectAll("circle")
-                .data(_data)
-            ;
+                .data(_data) //";"?
             //update circles
-            u
                 .enter()
                 .append("circle")
                 .merge(u)
@@ -110,6 +107,8 @@ note css properties: opacity, shadow, .button:hover, shadow, float:right, ...
                 .attr("cx", function(d) {return x(+d.AverageCityMPG); } )
                 .attr("cy", function(d) {return y(+d.AverageHighwayMPG); } )
                 .attr("r",  function(d) {return 2+ +d.EngineCylinders; } )
+            ;
+            //no ";"
         }
 
         update(data);
@@ -118,10 +117,10 @@ note css properties: opacity, shadow, .button:hover, shadow, float:right, ...
             update(data4);
         }
         function repop8() {
-            update(data8);
+            update(data4);
         }
         function repop12() {
-            update(data12);
+            update(data4);
         }
     /*
 var repop4 = function{
