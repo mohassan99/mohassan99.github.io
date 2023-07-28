@@ -8,7 +8,6 @@
 <svg width=300 height=300> </svg>
 
 <button type="button" onclick="repop4()"> Four Cylinders </button>
-<button type="button" onclick="repop6()"> Four Cylinders </button>
 <button type = "button" onclick="repop8()"> Eight Cylinders </button>
 <button type = "button" onclick="repop12()"> Twelve Cylinders </button>
 
@@ -57,13 +56,13 @@ function update(_data) {
         update(data);
 
         function repop4() {
-            update(data4);
+            return update(data4);
         }
         function repop8() {
-            update(data8);
+            return update(data8);
         }
         function repop12() {
-            update(data12);
+            return update(data12);
         }
 // AXES
         //circles
