@@ -1,50 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- https://flunky.github.io/cars2017.csv
-    contains average data for 2017 automobile manufacturers.
-    This creates a scatter plot of this data over 200x200 pixesls.
-    - Average City and Highway MPG are plotted horizontally and vertically on a logarithmic base 10 scale
-      over a domain from 10 to 150.
-    - The radius of each circle to 2 plus the number of cylinders for that entry.
-    -  .tickValues() is use on each axis to set tick values at 10, 20, 50 and 100.
-       and .tickFormat() of each axis is used to to set the ticks to d3.format("~s").
- -->
-
 <script src='https://d3js.org/d3.v5.min.js'></script>
 <style> circle {fill: lightblue; stroke: black;} </style>
-<!--<style> button {} </style>
--->
 
 <body onload='init()'>
 <svg width=300 height=300> </svg>
 
-<!--<button type="button" onclick="repop4()"> Four Cylinders </button>-->
 <button type="button" onclick="repop4()"> Four Cylinders </button>
+<button type="button" onclick="repop6()"> Four Cylinders </button>
 <button type = "button" onclick="repop8()"> Eight Cylinders </button>
 <button type = "button" onclick="repop12()"> Twelve Cylinders </button>
 
-<!--
-button's onclick event assoc with repop4,8,12() functions,
-callback fxns repop4,8,12 registered button's event
-the repop functions defined in js below
-see https://www.w3schools.com/css/css3_buttons.asp to style button
-note css properties: opacity, shadow, .button:hover, shadow, float:right, ...
-    function repop4() {
-        db.sql("Select …")
-    }
--->
-<!-- Create a div where the circle will take place -->
-<div id="circles"></div>
-
 <script>
     async function init() {
-        /* Code Here */
         const data =  await d3.csv('https://flunky.github.io/cars2017.csv');
         const data4 = await d3.csv('cars2017_4.csv');
         const data8 = await d3.csv('cars2017_8.csv');
         const data12 =await d3.csv('cars2017_12.csv');
-        //console.log(data) //to view data variable on console
         /*
         Columns:
         0 "Make"
@@ -55,42 +28,10 @@ note css properties: opacity, shadow, .button:hover, shadow, float:right, ...
         Rows: ~145
          */
         // Scaling Equations for x and y:
-        //var domain = [10, 150];
         var y = d3.scaleLog().domain([10, 150]).range([200, 0]);
         var x = d3.scaleLog().domain([10, 150]).range([0, 200]);
         var margin = 50;
         var height = 200;
-
-        //circles
-        //update(data) instead?
-        // d3.select("svg")
-        //     .append("g")
-        //     .attr("transform","translate("+margin+","+(+margin)+")")
-        //     .selectAll("circle")
-        //     .data(data)
-        //     .enter()
-        //     .append("circle")
-        //     .attr("cx", function(d) {return x(+d.AverageCityMPG); } )
-        //     .attr("cy", function(d) {return y(+d.AverageHighwayMPG); } )
-        //     .attr("r",  function(d) {return 2+ +d.EngineCylinders; } )
-        // ;
-
-        // var myScatter = d3.select("#circles")
-        //     .append("svg")
-        //     .append("g")
-        //     .attr("transform","translate("+margin+","+(+margin)+")")
-        //     .selectAll("circle")
-        //     .data(data)
-        //     .enter()
-        //     .append("circle")
-        //     .attr("cx", function(d) {return x(+d.AverageCityMPG); } )
-        //     .attr("cy", function(d) {return y(+d.AverageHighwayMPG); } )
-        //     .attr("r",  function(d) {return 2+ +d.EngineCylinders; } )
-        //
-        // var repop4 = function(){
-        //     myScatter
-        //         .data(data4)
-        // }
 
 // Create a function that takes a dataset as input and updates the plot:
         function update(_data) {
@@ -123,23 +64,7 @@ note css properties: opacity, shadow, .button:hover, shadow, float:right, ...
         function repop12() {
             update(data12);
         }
-    /*
-var repop4 = function{
-d3.selectAll("circle").html="" // clear  circle elements
-    //repopulate
-    .append("g")
-    .attr("transform","translate("+margin+","+(+margin)+")")
-    .selectAll("circle")
-    .data(data4)
-    .enter()
-    .append("circle")
-    .attr("cx", function(d) {return x(+d.AverageCityMPG); } )
-    .attr("cy", function(d) {return y(+d.AverageHighwayMPG); } )
-    .attr("r",  function(d) {return 2+ +d.EngineCylinders; } )
-;
-}
-*/
-
+// AXES
 // use a transform("translate", ..) to move origin to the chart origin within the margins
         d3.select("svg")
             .append("g")
@@ -157,40 +82,6 @@ d3.selectAll("circle").html="" // clear  circle elements
                 .tickFormat(d3.format("~s"))
             )
         ;
-        //end axes
-        //buttons
-        /*
-        function repop8() {
-            d3.select("circle").html="" // clear  contents of SVg
-                //repopulate
-                //.append("g")
-                //.attr("transform","translate("+margin+","+(+margin)+")")
-                .selectAll("circle")
-                .data(data8)
-                .enter()
-                .append("circle")
-                .attr("cx", function(d) {return x(+d.AverageCityMPG); } )
-                .attr("cy", function(d) {return y(+d.AverageHighwayMPG); } )
-                .attr("r",  function(d) {return 2+ +d.EngineCylinders; } )
-            ;
-        }
-        */
-        /*
-        function repop12() {
-            d3.select("circle").html="" // clear  contents of SVg
-                //repopulate
-                //.append("g")
-                //.attr("transform","translate("+margin+","+(+margin)+")")
-                .selectAll("circle")
-                .data(data12)
-                .enter()
-                .append("circle")
-                .attr("cx", function(d) {return x(+d.AverageCityMPG); } )
-                .attr("cy", function(d) {return y(+d.AverageHighwayMPG); } )
-                .attr("r",  function(d) {return 2+ +d.EngineCylinders; } )
-            ;
-        }
-         */
     } //end async
 </script>
 </body>
