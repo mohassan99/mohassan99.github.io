@@ -12,8 +12,8 @@
 -->
 
 <!--When render 'body' element run init-->
-<!--<body onload='init()'>-->
-<body>
+<body onload='init()'>
+<!--<body>-->
 
 <script>
 
@@ -38,12 +38,14 @@
         .attr("transform", "translate(" + margin + "," + (height + margin) + ")")
         .call(d3.axisBottom(x))
     ;
-    // async function init() {
-    //     const data = await d3.csv('galPerHundredM.csv');
+    async function init() {
+        const data = await d3.csv('galPerHundredM.csv');
 
-    const data = d3.csv('galPerHundredM.csv');
+    // const data = d3.csv('galPerHundredM.csv');
+    //     const Highway	= (3.19, 4.57, 5.34)
+    //     const Highway	= (3.19, 4.57, 5.34)
 
-    console.log(data);
+        console.log(data);
     console.log(data.Highway);
     // use a translate to move origin to the chart origin within the margins
     // add class .Highway rectangles with
@@ -95,9 +97,7 @@
     //         return y(+d.City);
     //     })
     // ;
-
-
-    //}
+    }
 </script>
 </body>
 </html>
