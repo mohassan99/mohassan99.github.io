@@ -17,68 +17,15 @@
 
 <script>
 
+    // Scaling Equations for x and y:
     var y = d3.scaleLinear().domain([0,10]).range([200,0]);
     var x = d3.scaleBand().domain(["4 Cylinder","8 Cylinder", "12 Cylinder"]).range([0,200]);
 
+    // console.log(x.bandwidth());
+    // console.log(x.bandwidth()/2);
+
     var margin = 50;
     var height = 200;
-
-    // async function init() {
-    //     const data = await d3.csv('galPerHundredM.csv');
-
-    const data = d3.csv('galPerHundredM.csv');
-
-    // Scaling Equations for x and y:
-
-    // use a translate to move origin to the chart origin within the margins
-    // add class .Highway rectangles with
-    //x at index - half bandwidth
-    //and width = half bandwidth
-    d3.select("svg")
-        .append("g")
-        .attr("transform", "translate(" + margin + "," + margin + ")")
-        //s.d.e.a your objects
-        //rectangles
-        .selectAll("rect").data(data).enter().append("rect")
-        .attr("class", "Hwy")
-        //if I am giving this set of rect the class Highway after
-        // the CSS selector is used, will it be recognized?
-        //do I need to add a "." in front here? I did not see that when I googled it
-        //Highway is used as the name of an array as well as the name of a class
-        //could this cause issues.
-        .attr('width', x.bandwidth() / 2) //!!!
-        .attr("x", function (i) {
-            return x(i) - x.bandwidth() / 2;
-        }) // !!!!
-        .attr("y", function (d) {
-            return y(+d.Highway);
-        })
-        .attr('height', function (d) {
-            return height - +d.Highway;
-        })
-    ;
-    // use a translate to move origin to the chart origin within the margins
-    // add class .City rectangles with
-    //x at index + half bandwidth
-    //and width = half bandwidth
-    d3.select("svg")
-        .append("g")
-        .attr("transform", "translate(" + margin + "," + margin + ")")
-        //s.d.e.a your objects
-        //rectangles
-        .selectAll("rect").data(data).enter().append("rect")
-        .attr("class", "Cty") //!!!
-        .attr('width', x.bandwidth() / 2) //!!!
-        .attr('height', function (d) {
-            return height - +d.City;
-        })
-        .attr("x", function (i) {
-            return x(i) + x.bandwidth() / 2;
-        }) // !!!!
-        .attr("y", function (d) {
-            return y(+d.City);
-        })
-    ;
 
     //axes
     d3.select("svg")
@@ -91,6 +38,65 @@
         .attr("transform", "translate(" + margin + "," + (height + margin) + ")")
         .call(d3.axisBottom(x))
     ;
+    // async function init() {
+    //     const data = await d3.csv('galPerHundredM.csv');
+
+    const data = d3.csv('galPerHundredM.csv');
+
+    console.log(data);
+    console.log(data.Highway);
+    // use a translate to move origin to the chart origin within the margins
+    // add class .Highway rectangles with
+    //x at index - half bandwidth
+    //and width = half bandwidth
+    d3.select("svg")
+        .append("g")
+        .attr("transform", "translate(" + margin + "," + margin + ")")
+        //s.d.e.a your objects
+        //rectangles
+        .selectAll("rect").data(data).enter().append("rect")
+        // .attr("class", "Hwy")
+        //if I am giving this set of rect the class Highway after
+        // the CSS selector is used, will it be recognized?
+        //do I need to add a "." in front here? I did not see that when I googled it
+        //Highway is used as the name of an array as well as the name of a class
+        //could this cause issues.
+        .attr('width', (x.bandwidth() / 2)) //!!!
+        .attr("x", function (i) {
+            return x(i) - (x.bandwidth() / 2);
+        }) // !!!!
+        .attr("y", function (d) {
+            return y(+d.Highway);
+        })
+        .attr('height', function (d) {
+            return height - +d.Highway;
+        })
+    ;
+
+    // use a translate to move origin to the chart origin within the margins
+    // add class .City rectangles with
+    //x at index + half bandwidth
+    //and width = half bandwidth
+    // d3.select("svg")
+    //     .append("g")
+    //     .attr("transform", "translate(" + margin + "," + margin + ")")
+    //     //s.d.e.a your objects
+    //     //rectangles
+    //     .selectAll("rect").data(data).enter().append("rect")
+    //     .attr("class", "Cty") //!!!
+    //     .attr('width', x.bandwidth() / 2) //!!!
+    //     .attr('height', function (d) {
+    //         return height - +d.City;
+    //     })
+    //     .attr("x", function (i) {
+    //         return x(i) + x.bandwidth() / 2;
+    //     }) // !!!!
+    //     .attr("y", function (d) {
+    //         return y(+d.City);
+    //     })
+    // ;
+
+
     //}
 </script>
 </body>
