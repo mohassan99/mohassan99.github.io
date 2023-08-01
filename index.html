@@ -15,7 +15,9 @@
 <button type="button" onclick="repop4()"> Four Cylinders </button>
 <button type = "button" onclick="repop8()"> Eight Cylinders </button>
 <button type = "button" onclick="repop12()"> Twelve Cylinders </button>
-
+<button type = "button">
+    <a href="https://mohassan99.github.io/mpgVsCyl">Next Slide </a>
+</button>
 <script>
     // Loads data while allowing other events to enter the queue
     /*  Columns:
@@ -27,7 +29,7 @@
     Rows: ~145 */
     //load data while allowing addition of events to queue
     async function init() {
-        const data = await d3.csv('https://flunky.github.io/cars2017.csv');
+        const data = await d3.csv('cars2017.csv');
     }
     // Scaling Equations for x and y:
     var y = d3.scaleLog().domain([10, 150]).range([200, 0]);
@@ -38,7 +40,7 @@
 
     //Takes a dataset outputs plot of circles:
     function update(_data) {
-        //d3.selectAll("circle").html = "";
+        d3.selectAll("circle").remove();        //d3.selectAll("circle").html = "";
         //delete circles
         d3.select("svg")
             .append("g")
