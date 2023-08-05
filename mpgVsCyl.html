@@ -2,9 +2,10 @@
 <html lang="en">
 <!--The selectors below are never used?-->
 <script src='https://d3js.org/d3.v5.min.js'></script>
+<script src='d3-annotation.js'></script>
 <style> rect.Hwy {fill: lightblue; stroke: black; }</style>
 <style> rect.Cty {fill: darkred; stroke: black; }</style>
-<svg width=300 height=300></svg>
+<svg width=600 height=600></svg>
 <!--
 -	The bars, not the axes extend across 200x200 pixel region.
 -	Create d3.scaleBand().domain([).range()
@@ -12,7 +13,8 @@
 -->
 
 <!--When render 'body' element run init-->
-<body onload='init()'>
+<body onload='init()' style="font-size:2.75vw">
+
 <!--<body>-->
 
 <script>
@@ -94,6 +96,44 @@
         })
     ;
     }
+
+    // Features of the annotation
+    const annotations = [
+        {
+            note: {
+                title: "Gallons/100 miles",
+                label: "The vertical axis is gallons per 100 miles." +
+                    "The light blue rectangles represent Highway and dark red rectangles represent city" +
+                    "We could barely see hints of it in the last image, but here it is very clear that the difference " +
+                    "in gallons per 100 miles in the city and the highway increases with the number of cylinders." +
+                    "The fact that the large engines had lower mileage and the smaller ones had higher mileage combined with " +
+                    "the fact that the change in log(Highway MPG) over the change in log(City MPG) was less than one. Tells" +
+                    "us that the difference in the percent change in highway MPG and the percent change in City MPG increases" +
+                    "with engine size. The effect of this is clearest when looking at gallons per hundred miles.",
+                wrap: 300,
+                padding:1,
+
+
+            },
+            // type: d3.annotationCalloutCircle,
+            type: d3.annotationXYThreshold,
+            // subject: {radius: 50, radiusPadding: 10},
+            subject: {y1: 105 , y2:170},
+            color: ["black"],
+            x: 175,
+            y: 110,
+            dy: 25,
+            dx: 70,
+        }
+    ]
+
+    const makeAnnotations = d3.annotation()
+        .annotations(annotations);
+    d3.select("svg")
+        .append("g")
+        .attr("transform","translate("+margin+","+margin+")")
+        .call(makeAnnotations);
+
 </script>
 </body>
 </html>
