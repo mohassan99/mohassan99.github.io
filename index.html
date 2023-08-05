@@ -3,22 +3,23 @@
 <!--load D3.js v5 library-->
 <script src='https://d3js.org/d3.v7.min.js'></script>
 <!--load d3-annotation-->
-<script src='https://github.com/susielu/d3-annotation/blob/master/d3-annotation.js'></script>
+<!--<script src='https://github.com/susielu/d3-annotation/blob/master/d3-annotation.js'></script>-->
+<script src='d3-annotation.js'></script>
 <!--CSS circle objects-->
 <style> circle {fill: lightblue; stroke: black;} </style>
 
 <!--When render 'body' element run init-->
 <!--<body onload='init()'>-->
-<body>
+<body style="font-size:2.75vw">
 <!--create 300x300 pixel SVG canvas-->
-<svg width=300 height=300> </svg>
+<svg width=600 height=600> </svg>
 
 <!--create html buttons-->
-<button type="button" onclick="data()"> All Engine Sizes </button>
-<button type="button" onclick="repop4()"> Four Cylinders </button>
-<button type = "button" onclick="repop8()"> Eight Cylinders </button>
-<button type = "button" onclick="repop12()"> Twelve Cylinders </button>
-<button type = "button">
+<button type="button" style = "position:relative; left:0px; top:-200px;" onclick="data()"> All Engine Sizes </button>
+<button type="button" onclick="repop4()"style = "position:relative; left:0px; top:-200px;"> Four Cylinders </button>
+<button type = "button" onclick="repop8()"style = "position:relative; left:0px; top:-200px;"> Eight Cylinders </button>
+<button type = "button" onclick="repop12()"style = "position:relative; left:0px; top:-200px;"> Twelve Cylinders </button>
+<button type = "button" style = "position:relative; left:500px; top:0px;">
     <a href="https://mohassan99.github.io/mpgVsCyl">Next Slide </a>
 </button>
 <script>
@@ -123,17 +124,24 @@
     const annotations = [
         {
             note: {
-                label: "Here is the annotation label",
-                title: "Annotation title"
+                label: "This plot shows Highway MPG on the vertical axis and city MPG on the horizontal axis. The values" +
+                    "on both scaled on shows on log base 10 scales. The distance between 10 and 100 would be the same as " +
+                    "the distance between 100 and 1000 if the axes extended that far. The slope of a line that would fit these circles " +
+                    "would be less than one. This means an increase in the log(city MPG) on the horizontal axis " +
+                    "would correspond to a lesser change in the log(highway MPG), given that the axes are displayed on log scales." +
+                    "Note how city and highway mpg compare for the larger engines corresponding to the larger circles versus how these compare for the smaller engines corresponding to the smaller circles.   ",
+                title: "Slope",
+                wrap: 330,
+                padding:1
             },
-            x: 150,
-            y: 150,
-            dy: 150,
-            dx: 150
+            color: ["black"],
+            x: 110,
+            y: 100,
+            dy: 0,
+            dx: 95
         }
     ]
 
-    // let makeAnnotations;
     const makeAnnotations = d3.annotation()
         .annotations(annotations);
     d3.select("svg")
