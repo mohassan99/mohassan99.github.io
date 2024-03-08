@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Machine Learning Portfolio</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        header {
+            background-color: #007bff;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        section {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        h2 {
+            color: #007bff;
+        }
+
+        .project {
+            margin-bottom: 20px;
+        }
+
+        .project img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Mohammad Hassanpour - Machine Learning Portfolio</h1>
+    </header>
+
+    <section>
+        <h2>About Me</h2>
+     <p>
+
+With an extensive decade-long tenure as a healthcare data analyst, I've immersed myself in the intricate landscape of health plans, navigating the complexities of data with precision and expertise. My journey into the world of data commenced with the attainment of a master's degree in applied statistics from the prestigious University of California at Santa Barbara in 2007. Yet, my passion for extracting profound insights from data originated in my earlier academic pursuits as an economics major and my exposure to rigorous scientific lab courses during my premed studies.
+    </p>
+<p>
+While my professional trajectory initially centered around data querying and manipulation for reporting, a burning desire to harness the transformative power of machine learning and statistics for knowledge discovery emerged. This fervent aspiration steered me towards pursuing a master's degree in Computer Science with a specialized focus on Data Science at the esteemed University of Illinois at Urbana-Champaign.
+    </p>
+<p>
+My strategic academic plan encompasses five advanced graduate courses in Machine Learning, complemented by coursework in data visualization, data mining, and distributed computing—meticulously aligned with the rigorous requirements of my degree. Notably, I've successfully completed four graduate courses in Machine Learning, along with a data visualization course, and I'm currently engaged in a graduate-level data mining course.
+    </p>
+<p>
+My passion lies in uncovering insights from intricate datasets, and my diverse background in applied statistics positions me squarely at the intersection of healthcare and the forefront of data science innovation. I am steadfastly committed to leveraging my multifaceted skills to contribute significantly to the transformative potential of machine learning within the dynamic realm of healthcare analytics.
+
+    </p>
+    </section>
+
+    <section>
+        <h2>Projects</h2>
+
+        <!-- Deep Learning for Healthcare published research replication project. -->
+        <div class="project">
+            <h3>Deep Learning for Healthcare published research replication project.</h3>
+            <p><b>Description:</b> In this project another student and I replicated a paper titled, "Readmission prediction via deep contextual embedding of clinical concepts." </p> 
+
+	<p> <b>Problem:</b> Hospital readmission following admission for congestive heart failure is harmful to patients and costly. </p>
+
+	<p> <b>Solution:</b> The goal of this paper was to target more intense readmission prevention interventions to patients at risk for readmission by predicting readmission. This is acheived by applying the proposed deep learning (neural network) architecture to clinical note electronic health records related to congestive heart failure. Recurrent neural network and latent topic models are combined in their model. These complement each other because RNNs are good at capturing the local structure of a word sequence, but they may have difficulty, "remembering" long-range interactions. In contrast, latent topic models don’t consider word order, but they do capture the general structure of a document. </p>
+
+	<p> <b>Result:</b> We achieved performance metric results within the ranges the authors published while applying the CONTENT model to synthetic data.</p>
+
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/EPZ0t3ZXLRM?si=DQGtA9JKYvPGs9Vz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+
+        <!-- Practical Statistical Learning Project 2: Walmart Sales Forecasting  -->
+        <div class="project">
+            <h3>Walmart Sales Forecasting</h3>
+	<p><b>Description:</b> Sales or revenue forecasting is a critical approach to planning for the future of retail operations effectively and efficiently. Walmart, a leading retailer in the USA, wants to forecast sales for their product categories in their stores based on the sales history of each category. This is based on <a href = https://www.kaggle.com/c/walmart-recruiting-store-sales-forecasting.> the Kaggle Walmart store sales forecasting competition.</a></p>            
+	<p><b>Problem:</b> Forecast weekly Walmart sales by store and department.</p>    
+	<p><b>Solution:</b> Pre-process and apply PCR (Principal Components Regression). </p>
+	<p> <b>Pre-processing:</b> We extract a set of weeks from the training dataset that corresponds to the set of weeks that must be predicted in each of the 10 folds to train a model specific to that fold. That is if we are predicting weeks 7 through 14 of 2021, we use a data set containing weeks 7 through 14 of 2020 to train a model. Then, we extract the data for the pairs of stores and departments that appear in the training and testing datasets we created. This results in 10 training and 10 testing datasets each of which has a unique range of dates and store-department combinations.</p>
+<p> <b>PCR (Principal Components Regression):</b> First we centered the data. We subtracted the mean of each week’s sales from each store’s weekly sales for that week. Then we performed SVD (singular value decomposition) to decompose training data such that singular values can be extracted. Next we reconstructed a transformed data matrix using the eight largest of the singular values to create a transformed centered data matrix. Finally, we added the predictor’s means back to their corresponding values. We added each week’s mean weekly sales to each store’s weekly sales for that week to create the data matrix used to forecast. </p>        
+    
+	<p><b>Result:</b>Table of Weighted Mean Absolute Error values for each fold and their average.</p>
+	<img src="Walmart Results.png" alt="Table of prediction model performance according to WMAE, weighted mean absolute error.">            
+        
+        </div>
+
+        <!-- Add more projects as needed -->
+
+    </section>
+
+    <footer>
+        <p>m.hassanpour.mle@gmail.com | linkedin.com/in/MoHassanpour | github.com/mohassan99 | public.tableau.com/app/profile/mohammad.mo</p>
+    </footer>
+
+</body>
+</html>
