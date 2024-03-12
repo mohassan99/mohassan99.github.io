@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            margin: 0;
+            margin-bottom: 600;
             padding: 0;
             background-color: #f5f5f5;
             color: #333;
@@ -45,10 +45,10 @@
         }
 
         footer {
-            background-color: #333;
+            background-color: #D3D3D3;
             color: white;
             text-align: center;
-            padding: 10px;
+	    font-color = black;
             position: fixed;
             bottom: 0;
             width: 100%;
@@ -86,6 +86,7 @@ My passion lies in uncovering insights from intricate datasets, and my diverse b
         <div class="project">
             <h3>Deep Learning for Healthcare published research replication project.</h3>
             <p><b>Description:</b> In this project another student and I replicated a paper titled, "Readmission prediction via deep contextual embedding of clinical concepts." </p> 
+	<a href = "https://github.com/mohassan99/DL4Health/raw/main/Replication%20of%20Paper%20Proposing%20the%20CONTENT%20Readmission%20Prediction%20Model.docx">Download</a>
 
 	<p> <b>Problem:</b> Hospital readmission following admission for congestive heart failure is harmful to patients and costly. </p>
 
@@ -99,6 +100,7 @@ My passion lies in uncovering insights from intricate datasets, and my diverse b
 	<h3>ii)	Heart Failure Prediction Enhancement Using Advanced Autoencoder Architectures</h3>
 
 <p><b>Description:</b> In this project, a breakthrough was achieved in heart failure predictive accuracy through the implementation of advanced autoencoder architectures. The focus was on leveraging PyTorch to engineer a suite of autoencoder models, including vanilla, sparse, denoised, and stacked variations.</p>
+<a href = "https://github.com/mohassan99/DL4Health/blob/main/HW4_Autoencoder.pdf">view/download</a>
 
 <p><b>Problem:</b> The challenge addressed in this research is enhancing the accuracy of predicting heart failure, necessitating the exploration of advanced autoencoder architectures.</p>
 
@@ -109,6 +111,7 @@ My passion lies in uncovering insights from intricate datasets, and my diverse b
             <h3>iii)	Heart Failure Prediction with RETAIN: An Interpretable RNN Model </h3>
 
 <p><b>Description:</b> Developed an interpretable predictive model for heart failure using RETAIN, an advanced RNN with a reverse time attention mechanism, achieving high accuracy in predictions using the MIMIC-III synthesized dataset.</p>
+<a href="https://github.com/mohassan99/DL4Health/blob/main/HW4_RETAIN.pdf">view/download</a>
 
 <p><b>Problem:</b> The challenge addressed in this research is enhancing the accuracy of predicting heart failure, necessitating the exploration of an interpretable RNN model with the RETAIN architecture.</p>
 
@@ -119,6 +122,7 @@ My passion lies in uncovering insights from intricate datasets, and my diverse b
 <h3>iv)	Advanced ECG Classification with MINA: Multilevel Attention-Guided CNN+RNN Model</h3>
 
 <p><b>Description:</b> Implemented MINA, an advanced CNN+RNN model, for binary classification of ECG signals, distinguishing atrial fibrillation from normal sinus rhythms with high accuracy.</p>
+<a href="https://github.com/mohassan99/DL4Health/blob/main/HW4_MINA_1%20(1).pdf">view/download</a>
 
 <p><b>Problem:</b> The challenge addressed in this project is the accurate classification of ECG signals into atrial fibrillation and normal sinus rhythms, demanding the development of an advanced CNN+RNN model.</p>
 
@@ -127,9 +131,10 @@ My passion lies in uncovering insights from intricate datasets, and my diverse b
 <p><b>Result:</b> Achieved significant accuracy in binary classification of ECGs through model training and evaluation, proving the efficacy of MINA in detecting atrial fibrillation.</p>
 
         <!-- Practical Statistical Learning Project 2: Walmart Sales Forecasting  -->
-        <div class="project">
             <h3>Walmart Sales Forecasting</h3>
 	<p><b>Description:</b> Sales or revenue forecasting is a critical approach to planning for the future of retail operations effectively and efficiently. Walmart, a leading retailer in the USA, wants to forecast sales for their product categories in their stores based on the sales history of each category. This is based on <a href = https://www.kaggle.com/c/walmart-recruiting-store-sales-forecasting.> the Kaggle Walmart store sales forecasting competition.</a></p>            
+	
+	<a href="https://github.com/mohassan99/StatisticalLearning/blob/main/2-%20PCA%20Regression%20Report.pdf">view/download</a>
 	<p><b>Problem:</b> Forecast weekly Walmart sales by store and department.</p>    
 	<p><b>Solution:</b> Pre-process and apply PCR (Principal Components Regression). </p>
 	<p> <b>Pre-processing:</b> We extract a set of weeks from the training dataset that corresponds to the set of weeks that must be predicted in each of the 10 folds to train a model specific to that fold. That is if we are predicting weeks 7 through 14 of 2021, we use a data set containing weeks 7 through 14 of 2020 to train a model. Then, we extract the data for the pairs of stores and departments that appear in the training and testing datasets we created. This results in 10 training and 10 testing datasets each of which has a unique range of dates and store-department combinations.</p>
@@ -138,16 +143,38 @@ My passion lies in uncovering insights from intricate datasets, and my diverse b
 	<p><b>Result:</b>Table of Weighted Mean Absolute Error values for each fold and their average.</p>
 	<img src="Walmart Results.png" alt="Table of prediction model performance according to WMAE, weighted mean absolute error.">            
         
-        </div>
+	<!--Movie Review Sentiment Analysis-->
+        <h3>Movie Review Sentiment Analysis</h3>
+
+	<p><b>Description:</b> Optimized sentiment analysis model by implementing Lasso logistic regression, refining the vocabulary from 50,000 IMDB movie reviews to 	identify key predictors of sentiment, and enhancing model accuracy and efficiency.</p>
+	<a href="https://github.com/mohassan99/StatisticalLearning/raw/main/3-%20Sentiment%20Analysis%20Report.docx">download</a>
+	<p><b>Problem:</b> The challenge addressed in this project is to improve the accuracy and efficiency of sentiment analysis for movie reviews, prompting the 	implementation of Lasso logistic regression and refinement of the vocabulary.</p>
+	<p><b>Solution:</b> Enhanced predictive accuracy for movie review sentiments by creating and refining a Document Term Matrix (DTM) using text preprocessing and 	vocabulary pruning techniques, leading to a more focused and effective classification model.</p>
+	<p><b>Result:</b> The optimization efforts resulted in improved model accuracy and efficiency, showcasing the effectiveness of the implemented Lasso logistic 	regression and refined vocabulary in sentiment analysis for movie reviews.</p>
+
+	<!--Movie Recommendation System-->
+	<h3>Movie Recommendation System</h3>
+	<p><b>Description:</b> Developed a system to recommend movies by genre, utilizing two schemes: Highly Rated and Trending. Used the MovieLens 1M Dataset to categorize films based on their ratings and recent popularity.</p>
+	<a href="https://mohassan99.github.io/MovieRecommenderReport">Report</a>
+	<a href="https://mohassan.shinyapps.io/movierec/">Published Shiny App</a>
+	<p><b>Problem:</b> The challenge addressed in this project is to enhance movie recommendations by genre, requiring the implementation of two recommendation schemes (Highly Rated and Trending) based on the MovieLens 1M Dataset.</p>
+
+	<p><b>Solution:</b> Implemented User-Based Collaborative Filtering (UBCF) by constructing a rating matrix and applying cosine similarity measures. Predicted user preferences and improved the accuracy of suggestions by analyzing the similarities between users' ratings. Developed Item-Based Collaborative Filtering (IBCF) by normalizing data and calculating similarities between items, optimizing recommendations through a model-based approach.</p>
+
+	<p><b>Result:</b> The developed movie recommendation system, incorporating UBCF and IBCF, successfully categorized films and provided accurate suggestions based on user preferences, ratings, and recent popularity trends.</p>
+        </div class="project">
 	<div class="push">
         <!-- Add more projects as needed -->
 
     </section>
 
     <footer style = "background-color: #D3D3D3";>
+	<font color = "black">
         <a href="linkedin.com/in/MoHassanpour">LinkedIn</a> |
 m.hassanpour.mle@gmail.com | <a href="github.com/mohassan99">GitHub Dashboard</a>| <a href="public.tableau.com/app/profile/mohammad.mo">Tableau Profile</p> | <a href = mohassan99@github.io/Portfolio>Portfolio</a>
+	</font>
     </footer>
+</div>
 
 </body>
 </html>
